@@ -1,13 +1,12 @@
 package com.perusudroid.galleryapp.model
 
 import android.util.Log
+import com.perusudroid.core.extensions.loading
 import com.perusudroid.core.extensions.performOnBackOutOnMain
 import com.perusudroid.core.extensions.success
 import com.perusudroid.core.networking.MyScheduler
 import com.perusudroid.core.networking.Outcome
-import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
 import io.reactivex.subjects.PublishSubject
 import java.util.*
 
@@ -19,6 +18,9 @@ class GalleryRepository(val local: GalleryDataContract.Local,
     override val galleryOutcome: PublishSubject<Outcome<ArrayList<Any>>> = PublishSubject.create<Outcome<ArrayList<Any>>>()
 
     override fun doGetImages() {
+
+        galleryOutcome.loading(true)
+
         local.getLocalImages()
                 .performOnBackOutOnMain(myScheduler)
                 .subscribe(
@@ -34,6 +36,7 @@ class GalleryRepository(val local: GalleryDataContract.Local,
     private fun handleSuccess(it: MutableList<Any>?) {
         Log.e("GalleryRepo", "Success ${it?.size}")
         galleryOutcome.success(it as ArrayList<Any>)
+        //  galleryOutcome.loading(false)
     }
 
     private fun handleError(error: Throwable?) {

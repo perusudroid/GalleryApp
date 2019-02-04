@@ -72,5 +72,6 @@ dependencies {
     api "com.google.code.gson:gson:$gson"
     api "com.github.bumptech.glide:glide:$glide"
     api "com.android.support:palette-v7:$appcompat"
-    kapt "com.github.bumptech.glide:compiler:$glide"
+   kapt "com.github.bumptech.glide:compiler:$glide"
+    //api 'com.squareup.picasso:picasso:2.71828'
 }

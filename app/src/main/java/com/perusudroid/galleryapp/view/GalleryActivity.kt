@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
@@ -21,6 +22,7 @@ import com.perusudroid.core.networking.Outcome
 import com.perusudroid.galleryapp.R
 import com.perusudroid.galleryapp.adapter.GalleryAdapter
 import com.perusudroid.galleryapp.common.GalleryDH
+import com.perusudroid.galleryapp.common.ViewSwitcher
 import com.perusudroid.galleryapp.viewmodel.GalleryViewModel
 import com.perusudroid.galleryapp.viewmodel.GalleryViewModelFactory
 import javax.inject.Inject
@@ -34,6 +36,7 @@ class GalleryActivity : AppCompatActivity() {
     private lateinit var ivBack: ImageView
     private lateinit var myTool: Toolbar
     private lateinit var recyclerView: RecyclerView
+    private lateinit var vsSwitcher: ViewSwitcher
 
     private val component by lazy {
         GalleryDH.galleryComponent()
@@ -64,6 +67,8 @@ class GalleryActivity : AppCompatActivity() {
     }
 
     private fun setAssets() {
+        recyclerView.setHasFixedSize(true)
+        recyclerView.setItemViewCacheSize(20)
         recyclerView.isNestedScrollingEnabled = true
         ivBack.setOnClickListener {
             onBackPressed()
@@ -89,6 +94,7 @@ class GalleryActivity : AppCompatActivity() {
         myTool = findViewById(R.id.myTool)
         ivBack = myTool.findViewById(R.id.ivBack)
         recyclerView = findViewById(R.id.recyclerView)
+        vsSwitcher = findViewById(R.id.vsContent)
     }
 
 
@@ -137,7 +143,6 @@ class GalleryActivity : AppCompatActivity() {
                     when (outcome) {
                         is Outcome.Progress -> {
                             Toast.makeText(this, "Progress", Toast.LENGTH_LONG).show()
-
                         }
                         is Outcome.Success -> {
 
@@ -149,7 +154,9 @@ class GalleryActivity : AppCompatActivity() {
                             manager.spanSizeLookup = onSpanSizeLookup
                             recyclerView.layoutManager = manager
                             recyclerView.adapter = adapter
-
+                            Log.d("GalleryX","Adapter Set")
+                            vsSwitcher.setChildVisible()
+                            Log.d("GalleryX","Child Visibility Set")
                         }
 
                         is Outcome.Failure -> {
@@ -165,8 +172,8 @@ class GalleryActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        when(requestCode){
-            100->{
+        when (requestCode) {
+            100 -> {
                 for (grantResult in grantResults) {
                     if (grantResult == PackageManager.PERMISSION_GRANTED) {
                         viewModel.getGalleryPics()

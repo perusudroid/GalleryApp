@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.perusudroid.galleryapp.R
 import com.perusudroid.galleryapp.response.DateModel
 import com.perusudroid.galleryapp.response.ImageModel
-import java.lang.RuntimeException
 import java.util.*
 
 class GalleryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -61,6 +60,12 @@ class GalleryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             Glide.with(itemView.context)
                     .load(imageModel.pic)
                     .into(ivPic)
+
+
+//            Picasso.get()
+//                    .load(imageModel.pic)
+//                    .tag("PicassoOnScrollListener")
+//                    .into(ivPic)
         }
     }
 
