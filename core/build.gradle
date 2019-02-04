@@ -1,0 +1,76 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+
+android {
+    compileSdkVersion 28
+
+
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+ext {
+    appcompat = '28.0.0'
+    junit = '4.12'
+    runner = '1.0.2'
+    espresso = '3.0.2'
+    kotlin = '1.2.20'
+    constraintLayout = '1.1.3'
+    archComp = '1.1.1'
+    room = '1.1.1'
+    rxJava = '2.1.7'
+    rxAndroid = '2.0.1'
+    dagger = '2.12'
+    gson = '2.8.0'
+    glide = '4.8.0'
+    retrofit = '2.3.0'
+    retrofitRxAdapter = '1.0.0'
+    picasso = '2.5.2'
+    okHttp3 = '3.9.0'
+    loggingInterceptor = '3.10.0'
+    googleAds = '17.1.2'
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api "com.android.support:appcompat-v7:$appcompat"
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "com.android.support.test:runner:$runner"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso"
+    api "com.android.support:recyclerview-v7:$appcompat"
+    api "com.android.support:cardview-v7:$appcompat"
+    api "com.android.support:support-v4:$appcompat"
+    api "com.android.support:design:$appcompat"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin"
+    api "com.android.support.constraint:constraint-layout:$constraintLayout"
+    api "android.arch.lifecycle:extensions:$archComp"
+    api "android.arch.lifecycle:extensions:$archComp"
+    api "android.arch.lifecycle:common-java8:$archComp"
+    api "io.reactivex.rxjava2:rxjava:$rxJava"
+    api "io.reactivex.rxjava2:rxandroid:$rxAndroid"
+    api "com.google.dagger:dagger:$dagger"
+    kapt "com.google.dagger:dagger-compiler:$dagger"
+    api "com.google.code.gson:gson:$gson"
+    api "com.github.bumptech.glide:glide:$glide"
+    api "com.android.support:palette-v7:$appcompat"
+    kapt "com.github.bumptech.glide:compiler:$glide"
+}

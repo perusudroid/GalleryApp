@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="default_corner_radius">30</integer>
+    <integer name="default_gradient_angle">45</integer>
+    <integer name="fab_anim_duration">200</integer>
+</resources>

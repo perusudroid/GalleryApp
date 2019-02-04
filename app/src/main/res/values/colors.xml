@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <color name="gradient_start">#B982D8</color>
+    <color name="gradient_center">#9574D6</color>
+    <color name="gradient_end">#353582</color>
+    <color name="fullWhite">#FFFFFF</color>
+
+    <color name="lightBlack">#464646</color>
+
+
+    <integer-array name="gradient_color_arr">
+        <item>@color/gradient_start</item>
+        <item>@color/gradient_center</item>
+        <item>@color/gradient_end</item>
+    </integer-array>
+
+</resources>

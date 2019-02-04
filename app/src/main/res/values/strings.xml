@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GalleryApp</string>
+
+
+    <string name="gradient_radial">radial</string>
+    <string name="gradient_sweep">sweep</string>
+    <string name="title">GalleryApp</string>
+
+</resources>
